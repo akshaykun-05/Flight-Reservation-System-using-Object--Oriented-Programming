@@ -67,6 +67,19 @@ class Flight {
         }
         System.out.println();
     }
+
+    // Method to count booked seats
+    public int getBookedSeatCount() {
+        int count = 0;
+
+        for (int i = 0; i < MAX_SEATS; i++) {
+            if (seats[i] != null) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }
 
 // Main Class for Testing
