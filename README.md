@@ -1,4 +1,4 @@
-# Flight Booking System
+﻿# Flight Booking System
 
 A simple Java program that simulates a flight seat booking system.
 
@@ -64,8 +64,10 @@ Flight Full! Booking failed for Passenger: Riya
 - `Main.class` - Compiled Main class
 
 ## Author
-
-AkshaySahu05
+Erp-RU-25-10138
+AkshaySahu
+RISU{Rungta International Skills University}
+2025-2029 Batch
 
 ## License
 
