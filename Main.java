@@ -1,4 +1,4 @@
-// Passenger Class
+// ===== Passenger Data Model =====
 class Passenger {
     private int id;
     private String name;
@@ -17,44 +17,45 @@ class Passenger {
     }
 }
 
-// Flight Class
+// ===== Flight Booking Logic =====
 class Flight {
-    // Constant representing total seat capacity
+    // Constant representing total seat capacity for this flight instance
     private final int MAX_SEATS;
     private Passenger[] seats;
 
-    // Constructor to initialize capacity and the seat array
+    // Initialize the flight with a fixed number of seats
     public Flight(int maxSeats) {
         this.MAX_SEATS = maxSeats;
         this.seats = new Passenger[MAX_SEATS];
         System.out.println("Flight Created with " + MAX_SEATS + " seats.\n");
     }
 
-    // Method to handle booking logic and validation
-    public boolean bookSeat(Passenger p) {
-        // Step 1: Prevent duplicate booking
+    // Book the first available seat for a passenger, if possible.
+    // Returns true when booking succeeds and false when the passenger is already booked or the flight is full.
+    public boolean bookSeat(Passenger passenger) {
+        // Prevent duplicate bookings by checking existing seat assignments.
         for (int i = 0; i < MAX_SEATS; i++) {
-            if (seats[i] != null && seats[i].getId() == p.getId()) {
-                System.out.println("Booking failed: Passenger " + p.getName() + " is already booked.");
+            if (seats[i] != null && seats[i].getId() == passenger.getId()) {
+                System.out.println("Booking failed: Passenger " + passenger.getName() + " is already booked.");
                 return false;
             }
         }
 
-        // Step 2: Find available seat and book
+        // Assign the passenger to the first empty seat found.
         for (int i = 0; i < MAX_SEATS; i++) {
             if (seats[i] == null) {
-                seats[i] = p; // Assign passenger to the first empty seat
-                System.out.println("Passenger " + p.getName() + " booked successfully.");
+                seats[i] = passenger; // Place passenger in an empty seat
+                System.out.println("Passenger " + passenger.getName() + " booked successfully.");
                 return true;
             }
         }
 
-        // Step 3: Handle flight full scenario
-        System.out.println("Flight Full! Booking failed for Passenger: " + p.getName());
+        // If no empty seat exists, the flight is full.
+        System.out.println("Flight Full! Booking failed for Passenger: " + passenger.getName());
         return false;
     }
 
-    // Method to display current status of all seats
+    // Print the current list of seats, marking each as either booked or empty.
     public void displaySeatStatus() {
         System.out.println("\nSeat Status:");
         for (int i = 0; i < MAX_SEATS; i++) {
@@ -68,7 +69,7 @@ class Flight {
         System.out.println();
     }
 
-    // Method to count booked seats
+    // Method to count how many seats are currently booked on the flight.
     public int getBookedSeatCount() {
         int count = 0;
 
